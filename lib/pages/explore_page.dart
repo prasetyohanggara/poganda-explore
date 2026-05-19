@@ -172,10 +172,10 @@ class _MateriCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 child: Image.asset(
-                  // PERBAIKAN: Gunakan Image.asset karena file ada di lokal
+                  
                   item.imageUrl, 
                   fit: BoxFit.cover,
-                  // Jika path salah, tampilkan ikon peringatan
+                  
                   errorBuilder: (_, __, ___) => Container(
                     color: AppTheme.feedbackBg,
                     child: const Icon(Icons.broken_image, color: AppTheme.primary),
