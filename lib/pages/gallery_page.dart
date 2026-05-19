@@ -14,7 +14,7 @@ class _GalleryPageState extends State<GalleryPage> {
 
   final List<String> _filters = ['Semua', 'Pantai', 'Bawah Laut', 'Aktivitas', 'Kuliner'];
 
-  // Data sudah benar menggunakan 'imagePath' sesuai pubspec.yaml kamu
+  
   final List<Map<String, dynamic>> _photos = [
     {
       'imagePath': 'assets/images/pantai_poganda.jpg',
@@ -194,8 +194,7 @@ class _GalleryPageState extends State<GalleryPage> {
   }
 }
 
-// ─── LIGHTBOX (SUDAH DISESUAIKAN) ──────────────────────────────────────────
-
+// LIGHTBOX 
 class _LightboxPage extends StatelessWidget {
   final Map<String, dynamic> photo;
   final String heroTag;
