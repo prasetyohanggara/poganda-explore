@@ -18,7 +18,7 @@ class _GalleryPageState extends State<GalleryPage> {
   final List<Map<String, dynamic>> _photos = [
     {
       'imagePath': 'assets/images/pantai_poganda.jpg',
-      'caption': 'Pantai Poganda — Tolitoli',
+      'caption': 'Pantai Poganda — Banggai Kepulauan',
       'kategori': 'Pantai',
       'tall': true,
     },
