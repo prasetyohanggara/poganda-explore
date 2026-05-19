@@ -59,18 +59,10 @@ class _HeroSection extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           // Gambar pantai
-          Image.network(
-            'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
+          Image.asset(
+            // GANTI DENGAN PATH GAMBAR UTAMA KAMU LANGSUNG DI SINI
+            'assets/images/pantai_poganda.jpg', 
             fit: BoxFit.cover,
-            loadingBuilder: (_, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Container(
-                color: AppTheme.primary,
-                child: const Center(
-                  child: CircularProgressIndicator(color: Colors.white),
-                ),
-              );
-            },
             errorBuilder: (_, __, ___) => Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -157,7 +149,7 @@ class _MenuSection extends StatelessWidget {
 
     return Container(
       color: AppTheme.background,
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -170,7 +162,7 @@ class _MenuSection extends StatelessWidget {
               color: AppTheme.textDark,
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 4),
           GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
