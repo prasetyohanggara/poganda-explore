@@ -14,30 +14,52 @@ class _SplashPageState extends State<SplashPage>
   late AnimationController _controller;
   late Animation<double> _fadeAnim;
   late Animation<double> _scaleAnim;
+  late Animation<double> _slideAnim;
 
   @override
   void initState() {
     super.initState();
+
+    // Durasi animasi dinaikkan dari 1200ms → 1800ms agar terasa lebih mulus
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 1800),
     );
+
     _fadeAnim = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+      CurvedAnimation(
+        parent: _controller,
+        // Fade hanya terjadi di 60% pertama agar logo tidak menghilang di akhir
+        curve: const Interval(0.0, 0.6, curve: Curves.easeIn),
+      ),
     );
-    _scaleAnim = Tween<double>(begin: 0.8, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
+
+    _scaleAnim = Tween<double>(begin: 0.7, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.7, curve: Curves.elasticOut),
+      ),
     );
+
+    // Animasi tambahan: teks muncul sedikit dari bawah ke atas
+    _slideAnim = Tween<double>(begin: 24, end: 0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.2, 0.8, curve: Curves.easeOut),
+      ),
+    );
+
     _controller.forward();
 
-    Future.delayed(const Duration(milliseconds: 2800), () {
+    // Dinaikkan dari 2800ms → 4200ms agar splash cukup lama untuk dinikmati
+    Future.delayed(const Duration(milliseconds: 4200), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (_, __, ___) => const MainNavigation(),
             transitionsBuilder: (_, anim, __, child) =>
                 FadeTransition(opacity: anim, child: child),
-            transitionDuration: const Duration(milliseconds: 500),
+            transitionDuration: const Duration(milliseconds: 600),
           ),
         );
       }
@@ -78,7 +100,7 @@ class _SplashPageState extends State<SplashPage>
                 height: 300,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withValues(alpha:0.06),
+                  color: Colors.white.withValues(alpha: 0.06),
                 ),
               ),
             ),
@@ -90,7 +112,7 @@ class _SplashPageState extends State<SplashPage>
                 height: 240,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withValues(alpha:0.05),
+                  color: Colors.white.withValues(alpha: 0.05),
                 ),
               ),
             ),
@@ -109,54 +131,62 @@ class _SplashPageState extends State<SplashPage>
               ),
             ),
             // Konten utama
-            FadeTransition(
-              opacity: _fadeAnim,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 40),
-                  ScaleTransition(
-                    scale: _scaleAnim,
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: const Icon(
-                        Icons.waves,
-                        size: 52,
-                        color: Color(0xFF006D6D),
-                      ),
+            AnimatedBuilder(
+              animation: _controller,
+              builder: (context, _) {
+                return FadeTransition(
+                  opacity: _fadeAnim,
+                  child: Transform.translate(
+                    offset: Offset(0, _slideAnim.value),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 40),
+                        ScaleTransition(
+                          scale: _scaleAnim,
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            child: const Icon(
+                              Icons.waves,
+                              size: 52,
+                              color: Color(0xFF006D6D),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 28),
+                        const Text(
+                          'PogandaExplore',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 32,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Jelajahi Keindahan Pantai Poganda',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white.withValues(alpha: 0.85),
+                          ),
+                        ),
+                        const SizedBox(height: 60),
+                        // Wave loader
+                        const _WaveLoader(),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 28),
-                  const Text(
-                    'PogandaExplore',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Jelajahi Keindahan Pantai Poganda',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white.withValues(alpha:0.85),
-                    ),
-                  ),
-                  const SizedBox(height: 60),
-                  // Wave loader
-                  _WaveLoader(),
-                ],
-              ),
+                );
+              },
             ),
           ],
         ),
@@ -166,6 +196,8 @@ class _SplashPageState extends State<SplashPage>
 }
 
 class _WaveLoader extends StatefulWidget {
+  const _WaveLoader();
+
   @override
   State<_WaveLoader> createState() => _WaveLoaderState();
 }
@@ -177,7 +209,9 @@ class _WaveLoaderState extends State<_WaveLoader>
   @override
   void initState() {
     super.initState();
-    _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 900))
+    // Durasi dots dinaikkan dari 900ms → 1100ms agar gerakannya lebih kalem
+    _c = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1100))
       ..repeat(reverse: true);
   }
 
@@ -195,14 +229,14 @@ class _WaveLoaderState extends State<_WaveLoader>
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(3, (i) {
           final delay = i * 0.33;
-          final val = (((_c.value + delay) % 1.0));
+          final val = ((_c.value + delay) % 1.0);
           final scale = 0.6 + 0.4 * (val < 0.5 ? val * 2 : (1 - val) * 2);
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
             width: 8 * scale,
             height: 8 * scale,
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha:0.7),
+              color: Colors.white.withValues(alpha: 0.7),
               shape: BoxShape.circle,
             ),
           );
