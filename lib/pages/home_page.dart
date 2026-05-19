@@ -114,7 +114,7 @@ class _HeroSection extends StatelessWidget {
                     Icon(Icons.location_on, color: Colors.white70, size: 16),
                     SizedBox(width: 4),
                     Text(
-                      'Tolitoli, Sulawesi Tengah',
+                      'Banggai Kepulauan, Sulawesi Tengah',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 14,
