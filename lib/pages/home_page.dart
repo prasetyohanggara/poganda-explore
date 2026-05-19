@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Transparan agar Hero image terlihat penuh
+        backgroundColor: Colors.transparent,
         elevation: 0,
         
         title: const Text(
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// ─── HERO SECTION ──────────────────────────────────────────────────────────
+//HERO SECTION 
 
 class _HeroSection extends StatelessWidget {
   const _HeroSection();
@@ -60,7 +60,7 @@ class _HeroSection extends StatelessWidget {
         children: [
           // Gambar pantai
           Image.asset(
-            // GANTI DENGAN PATH GAMBAR UTAMA KAMU LANGSUNG DI SINI
+            
             'assets/images/pantai_poganda.jpg', 
             fit: BoxFit.cover,
             errorBuilder: (_, __, ___) => Container(
@@ -76,7 +76,7 @@ class _HeroSection extends StatelessWidget {
               ),
             ),
           ),
-          // Gradient overlay agar teks terbaca
+          // Gradient overlay
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -133,7 +133,7 @@ class _HeroSection extends StatelessWidget {
   }
 }
 
-// ─── MENU GRID SECTION ─────────────────────────────────────────────────────
+// MENU GRID SECTION 
 
 class _MenuSection extends StatelessWidget {
   const _MenuSection();
@@ -194,7 +194,7 @@ class _MenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigasi menggunakan Navigator.push untuk menghindari error _MainNavigationState
+        
         Widget targetPage;
         switch (data.label) {
           case 'Jelajahi':
@@ -254,7 +254,7 @@ class _MenuCard extends StatelessWidget {
   }
 }
 
-// ─── FAKTA MENARIK SECTION ─────────────────────────────────────────────────
+// FAKTA MENARIK SECTION 
 
 class _FaktaMenarikSection extends StatelessWidget {
   const _FaktaMenarikSection();
@@ -270,7 +270,7 @@ class _FaktaMenarikSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Pastikan menggunakan AppTheme.surface jika background dianggap deprecated
+      
       color: AppTheme.background, 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,14 +281,14 @@ class _FaktaMenarikSection extends StatelessWidget {
               'Fakta Menarik',
               style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 16, // Sedikit diperkecil agar proporsional
+                fontSize: 16, 
                 fontWeight: FontWeight.w700,
                 color: AppTheme.textDark,
               ),
             ),
           ),
           SizedBox(
-            // TINGGI DINAIKKAN ke 140 agar tidak overflow 8.0 pixels
+            
             height: 140, 
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -297,7 +297,7 @@ class _FaktaMenarikSection extends StatelessWidget {
               itemBuilder: (_, i) {
                 final f = _fakta[i];
                 return Container(
-                  width: 150, // Sedikit dipersempit agar lebih banyak kartu terlihat
+                  width: 150, 
                   margin: const EdgeInsets.only(right: 12, bottom: 12),
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -330,7 +330,7 @@ class _FaktaMenarikSection extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 4),
-                      // WRAP DENGAN EXPANDED/FLEXIBLE UNTUK MENGHINDARI OVERFLOW
+                      
                       Expanded(
                         child: Text(
                           f['deskripsi'] as String,
