@@ -16,7 +16,7 @@ class DetailMateriPage extends StatelessWidget {
         children: [
           CustomScrollView(
             slivers: [
-              // SliverAppBar dengan hero image
+              
               SliverAppBar(
                 expandedHeight: 300,
                 pinned: true,
