@@ -1,6 +1,5 @@
 # PogandaExplore 
 **Aplikasi Wisata Edukasi Pantai Poganda**
-> Media Digital Interaktif berbasis Flutter
 
 ---
 
@@ -15,13 +14,13 @@ lib/
 │   └── app_data.dart          # Data materi & 10 soal kuis
 └── pages/
     ├── splash_page.dart        # Splash screen animasi
-    ├── main_navigation.dart    # Bottom nav controller (Home/Explore/Quiz/Gallery)
-    ├── home_page.dart          # Halaman beranda + hero + grid menu + fakta menarik
+    ├── main_navigation.dart    # Bottom nav controller
+    ├── home_page.dart          # Halaman beranda + grid menu + fakta menarik
     ├── explore_page.dart       # Daftar materi dengan filter & search
-    ├── detail_materi_page.dart # Detail konten artikel (SliverAppBar + hero image)
+    ├── detail_materi_page.dart # Detail konten artikel 
     ├── quiz_page.dart          # Kuis interaktif + progress bar + feedback warna
     ├── quiz_result_page.dart   # Hasil kuis + skor + predikat + animasi
-    ├── gallery_page.dart       # Galeri foto + filter + hero animation lightbox
+    ├── gallery_page.dart       # Galeri foto + filter 
     └── map_page.dart           # Peta Google Maps + marker lokasi + navigasi eksternal
 ```
 
@@ -76,14 +75,14 @@ flutter run
 
 | Fitur | Deskripsi |
 |---|---|
-| 🌊 Splash Screen | Animasi logo + wave loader 2.8 detik |
+| 🌊 Splash Screen | Animasi logo + wave loader |
 | 🏠 Home | Hero image pantai + grid menu 4 fitur + fakta menarik scroll |
 | 🔍 Explore | Daftar materi dengan search bar + filter kategori |
-| 📖 Detail Materi | SliverAppBar + konten artikel + gambar inline |
-| 🧠 Kuis | 10 soal pilihan ganda + warna hijau/merah + penjelasan jawaban |
+| 📖 Detail Materi | Konten artikel + gambar inline |
+| 🧠 Kuis | 10 soal pilihan ganda + warna hijau dan merah + penjelasan jawaban |
 | 🏆 Hasil Kuis | Skor lingkaran + predikat + motivasi + coba lagi |
-| 🖼️ Galeri | Grid foto + filter + Hero Animation lightbox fullscreen |
-| 🗺️ Peta | Google Maps satellite + 4 marker lokasi + buka Google Maps |
+| 🖼️ Galeri | Grid foto + filter |
+| 🗺️ Peta | Google Maps satellite + buka Google Maps |
 
 ---
 
@@ -111,6 +110,4 @@ flutter run
 
 ## Catatan Tambahan
 
-- Semua gambar materi dan ikon sekarang menggunakan aset lokal yang disimpan di dalam folder assets/images/
-- Font **Poppins** sudah dikonfigurasi di `pubspec.yaml`
-- Aplikasi mendukung **Android** dan **iOS** (Flutter multiplatform)
+- Font **Poppins** dan assets **Images** sudah dikonfigurasi di `pubspec.yaml`
