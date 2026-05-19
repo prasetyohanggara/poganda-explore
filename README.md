@@ -1,4 +1,4 @@
-# PogandaExplore 🌊
+# PogandaExplore 
 **Aplikasi Wisata Edukasi Pantai Poganda**
 > Media Digital Interaktif berbasis Flutter
 
@@ -45,26 +45,23 @@ flutter pub get
     android:value="MASUKKAN_API_KEY_ANDA_DI_SINI"/>
 ```
 
-**iOS** — buka `ios/Runner/AppDelegate.swift`:
-```swift
-import GoogleMaps
-// Tambahkan di dalam application(_:didFinishLaunchingWithOptions:)
-GMSServices.provideAPIKey("MASUKKAN_API_KEY_ANDA_DI_SINI")
-```
-
 > Dapatkan API key gratis di: https://console.cloud.google.com/
-> Aktifkan: **Maps SDK for Android** dan **Maps SDK for iOS**
+> Aktifkan: **Maps SDK for Android**
 
-### 3. Tambahkan Assets (Opsional — untuk font lokal)
+### 3. Tambahkan Assets (Opsional)
 
-Unduh font Poppins dari Google Fonts dan letakkan di:
+
 ```
 assets/
-└── fonts/
-    ├── Poppins-Regular.ttf
-    ├── Poppins-Medium.ttf
-    ├── Poppins-SemiBold.ttf
-    └── Poppins-Bold.ttf
+├── fonts/
+│   ├── Poppins-Regular.ttf
+│   ├── Poppins-Medium.ttf
+│   ├── Poppins-SemiBold.ttf
+│   └── Poppins-Bold.ttf
+└── images/
+    ├── pantai_poganda.jpg
+    ├── ikan_bakar.jpg
+    └── [gambar_materi_lainnya].jpg
 ```
 
 ### 4. Jalankan aplikasi
@@ -114,7 +111,6 @@ flutter run
 
 ## Catatan Tambahan
 
-- Gambar menggunakan **Unsplash CDN** (memerlukan koneksi internet)
-- Untuk production, ganti dengan aset gambar lokal di `assets/images/`
+- Semua gambar materi dan ikon sekarang menggunakan aset lokal yang disimpan di dalam folder assets/images/
 - Font **Poppins** sudah dikonfigurasi di `pubspec.yaml`
 - Aplikasi mendukung **Android** dan **iOS** (Flutter multiplatform)
