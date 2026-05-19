@@ -445,12 +445,12 @@ class _QuizPageState extends State<QuizPage> with SingleTickerProviderStateMixin
       content: const Text('Progres kuis kamu akan hilang jika keluar sekarang.'),
       actions: [
         TextButton(
-          onPressed: () => Navigator.pop(dialogContext), // Tutup dialog saja
+          onPressed: () => Navigator.pop(dialogContext), 
           child: const Text('Lanjutkan Kuis'),
         ),
         TextButton(
           onPressed: () {
-            // 1. RESET data kuis secara manual
+            
             setState(() {
               _currentIndex = 0;
               _score = 0;
@@ -459,8 +459,7 @@ class _QuizPageState extends State<QuizPage> with SingleTickerProviderStateMixin
               _jawabanUser.fillRange(0, _jawabanUser.length, null);
             });
 
-            // 2. NAVIGASI PAKSA (Buang semua tumpukan, balik ke awal)
-            // Ganti '/' dengan nama route halaman utama kamu (biasanya '/' atau '/home')
+            
             Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
           },
           child: const Text(
