@@ -1,5 +1,4 @@
 // lib/pages/map_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -115,7 +114,7 @@ class _MapPageState extends State<MapPage> {
           // Tombol Kontrol Peta (Zoom & Location)
           Positioned(
             right: 12,
-            bottom: 130, // Ditinggikan sedikit agar tidak tertutup card
+            bottom: 130, 
             child: Column(
               children: [
                 _MapBtn(icon: Icons.my_location_rounded, onTap: _centerOnPoganda),
@@ -174,7 +173,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                   ),
                   
-                  // TOMBOL RUTE YANG KAMU BUTUHKAN
+                  
                   ElevatedButton.icon(
                     onPressed: _openGoogleMapsExternal, 
                     icon: const Icon(Icons.navigation_rounded, size: 16),
