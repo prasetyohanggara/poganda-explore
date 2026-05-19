@@ -8,8 +8,8 @@ class MateriItem {
   final String deskripsiSingkat;
   final String konten;
   final String kontenLanjutan;
-  final String imageUrl;      // thumbnail di list
-  final String heroImageUrl;  // gambar besar di halaman detail
+  final String imageUrl;      
+  final String heroImageUrl;  
   final Color badgeColor;
   final String aktivitasUtama;
   final List<String> aktivitasChips;
@@ -92,7 +92,7 @@ final List<MateriItem> daftarMateri = [
   ),
 ];
 
-// ─── DATA KUIS (Gambar Dihapus) ──────────────────────────────────────────────
+// DATA KUIS 
 
 class QuizQuestion {
   final String pertanyaan;
