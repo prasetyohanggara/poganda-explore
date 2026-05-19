@@ -1,0 +1,42 @@
+name: poganda_explore
+description: Aplikasi wisata edukasi Pantai Poganda - PogandaExplore
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_maps_flutter: ^2.5.3
+  url_launcher: ^6.2.4
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/pantai_poganda.jpg
+    - assets/images/pantai_poganda_2.jpg
+    - assets/images/pantai_poganda_3.jpg
+    - assets/images/terumbu_karang.jpg
+    - assets/images/snorkeling.jpg
+    - assets/images/ikan_bakar.jpg
+    
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
