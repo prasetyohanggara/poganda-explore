@@ -16,7 +16,7 @@ class DetailMateriPage extends StatelessWidget {
         children: [
           CustomScrollView(
             slivers: [
-              
+              // SliverAppBar dengan hero image
               SliverAppBar(
                 expandedHeight: 300,
                 pinned: true,
@@ -36,7 +36,7 @@ class DetailMateriPage extends StatelessWidget {
                   background: Stack(
                     fit: StackFit.expand,
                     children: [
-                      // TETAP PAKAI IMAGE.ASSET, TAPI PANGGIL PROPERTI YANG SUDAH ADA
+                      
                       Image.asset(
                         item.heroImageUrl, 
                         fit: BoxFit.cover,
@@ -117,7 +117,7 @@ class DetailMateriPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
 
-                        // Chips aktivitas (jika ada)
+                        // Chips aktivitas
                         if (item.aktivitasChips.isNotEmpty) ...[
                           Text(
                             'Aktivitas Unggulan',
@@ -164,7 +164,7 @@ class DetailMateriPage extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(14),
                           child: Image.asset(
-                            // MENGGUNAKAN 'item.imagePath' SESUAI KONSTRUKTOR KAMU
+                            
                             item.imageUrl, 
                            height: 200,
                            width: double.infinity,
