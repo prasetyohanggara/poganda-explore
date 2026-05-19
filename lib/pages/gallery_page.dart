@@ -12,7 +12,7 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   String _selectedFilter = 'Semua';
 
-  final List<String> _filters = ['Semua', 'Pantai', 'Bawah Laut', 'Sunset', 'Aktivitas', 'Kuliner'];
+  final List<String> _filters = ['Semua', 'Pantai', 'Bawah Laut', 'Aktivitas', 'Kuliner'];
 
   // Data sudah benar menggunakan 'imagePath' sesuai pubspec.yaml kamu
   final List<Map<String, dynamic>> _photos = [
