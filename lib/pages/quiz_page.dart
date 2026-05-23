@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/app_data.dart';
 import '../theme/app_theme.dart';
 import 'quiz_result_page.dart';
+import 'main_navigation.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -450,23 +451,17 @@ class _QuizPageState extends State<QuizPage> with SingleTickerProviderStateMixin
         ),
         TextButton(
           onPressed: () {
-            
-            setState(() {
-              _currentIndex = 0;
-              _score = 0;
-              _selectedOption = null;
-              _answered = false;
-              _jawabanUser.fillRange(0, _jawabanUser.length, null);
-            });
-
-            
-            Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+           Navigator.of(dialogContext).pop(); // tutup dialog
+           Navigator.of(context).pushAndRemoveUntil(
+             MaterialPageRoute(builder: (_) => const MainNavigation()),
+             (route) => false,
+            );
           },
           child: const Text(
             'Keluar',
             style: TextStyle(color: Colors.red, fontFamily: 'Poppins'),
           ),
-        ),
+        )
       ],
     ),
   );
