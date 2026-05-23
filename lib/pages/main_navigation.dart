@@ -61,9 +61,9 @@ class _MainNavigationState extends State<MainNavigation> {
           elevation: 0,
           items: [
             _navItem(Icons.home_rounded, Icons.home_outlined, 'Home', 0),
-            _navItem(Icons.explore_rounded, Icons.explore_outlined, 'Explore', 1),
-            _navItem(Icons.quiz_rounded, Icons.quiz_outlined, 'Quiz', 2),
-            _navItem(Icons.photo_library_rounded, Icons.photo_library_outlined, 'Gallery', 3),
+            _navItem(Icons.explore_rounded, Icons.explore_outlined, 'Jelajahi', 1),
+            _navItem(Icons.quiz_rounded, Icons.quiz_outlined, 'Kuis', 2),
+            _navItem(Icons.photo_library_rounded, Icons.photo_library_outlined, 'Galeri', 3),
           ],
         ),
       ),
