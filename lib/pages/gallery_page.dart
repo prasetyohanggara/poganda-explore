@@ -22,6 +22,21 @@ class _GalleryPageState extends State<GalleryPage> {
       'kategori': 'Pantai',
       'tall': true,
     },
+
+    {
+      'imagePath': 'assets/images/pantai_poganda_2.jpg',
+      'caption': 'Pantai Poganda — Banggai Kepulauan',
+      'kategori': 'Pantai',
+      'tall': true,
+    },
+
+    {
+      'imagePath': 'assets/images/pantai_poganda_3.jpg',
+      'caption': 'Pantai Poganda — Banggai Kepulauan',
+      'kategori': 'Pantai',
+      'tall': true,
+    },
+
     {
       'imagePath': 'assets/images/terumbu_karang.jpg',
       'caption': 'Terumbu Karang Bawah Laut',

@@ -194,7 +194,6 @@ class _MenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        
         Widget targetPage;
         switch (data.label) {
           case 'Jelajahi':
@@ -212,42 +211,63 @@ class _MenuCard extends StatelessWidget {
           default:
             targetPage = const ExplorePage();
         }
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => targetPage),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (_) => targetPage));
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey.withValues(alpha: 0.12)),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: data.bgColor,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(data.icon, color: data.color, size: 28),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              data.label,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: AppTheme.textDark,
-              ),
+          // ✅ Border gradient teal → biru muda
+          border: Border.all(color: Colors.transparent, width: 1.5),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
             ),
           ],
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF006D6D), Color(0xFF4FC3F7)],
+            ),
+          ),
+          padding: const EdgeInsets.all(1.5), // ✅ ketebalan border gradient
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(14.5),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: data.bgColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(data.icon, color: data.color, size: 26),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  data.label,
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF212121),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
