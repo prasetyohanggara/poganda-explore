@@ -35,7 +35,7 @@ class _MainNavigationState extends State<MainNavigation> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha:0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 12,
               offset: const Offset(0, -2),
             ),
@@ -60,10 +60,10 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
           elevation: 0,
           items: [
-            _navItem(Icons.home_rounded, Icons.home_outlined, 'Home', 0),
-            _navItem(Icons.explore_rounded, Icons.explore_outlined, 'Jelajahi', 1),
-            _navItem(Icons.quiz_rounded, Icons.quiz_outlined, 'Kuis', 2),
-            _navItem(Icons.photo_library_rounded, Icons.photo_library_outlined, 'Galeri', 3),
+            _navItem(Icons.home_rounded, Icons.home_outlined, 'Home'),
+            _navItem(Icons.explore_rounded, Icons.explore_outlined, 'Jelajahi'),
+            _navItem(Icons.quiz_rounded, Icons.quiz_outlined, 'Kuis'),
+            _navItem(Icons.photo_library_rounded, Icons.photo_library_outlined, 'Galeri'),
           ],
         ),
       ),
@@ -71,39 +71,10 @@ class _MainNavigationState extends State<MainNavigation> {
   }
 
   BottomNavigationBarItem _navItem(
-      IconData activeIcon, IconData icon, String label, int idx) {
+      IconData activeIcon, IconData icon, String label) {
     return BottomNavigationBarItem(
-      icon: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon),
-          if (_currentIndex == idx)
-            Container(
-              margin: const EdgeInsets.only(top: 2),
-              width: 6,
-              height: 6,
-              decoration: const BoxDecoration(
-                color: AppTheme.primary,
-                shape: BoxShape.circle,
-              ),
-            ),
-        ],
-      ),
-      activeIcon: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(activeIcon),
-          Container(
-            margin: const EdgeInsets.only(top: 2),
-            width: 6,
-            height: 6,
-            decoration: const BoxDecoration(
-              color: AppTheme.primary,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ],
-      ),
+      icon: Icon(icon),
+      activeIcon: Icon(activeIcon),
       label: label,
     );
   }
