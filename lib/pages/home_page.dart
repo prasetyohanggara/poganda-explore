@@ -53,7 +53,7 @@ class _HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.52,
+      height: MediaQuery.of(context).size.height * 0.38,
       width: double.infinity,
       child: Stack(
         fit: StackFit.expand,
@@ -153,23 +153,38 @@ class _MenuSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Jelajahi Pantai',
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: AppTheme.textDark,
-            ),
+          
+          Row(
+            children: [
+              Container(
+                width: 4,
+                height: 22,
+                decoration: BoxDecoration(
+                  color: AppTheme.primary,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Text(
+                'Jelajahi Pantai',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppTheme.textDark,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 20),
           GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 1.5,
+            childAspectRatio: 0.95,
             children: menus.map((m) => _MenuCard(data: m)).toList(),
           ),
         ],
@@ -312,7 +327,7 @@ class _MenuCard extends StatelessWidget {
               ),
             ),
 
-            // Bagian bawah: icon + teks (45% tinggi card)
+            
             Expanded(
               flex: 45,
               child: Padding(
@@ -388,31 +403,31 @@ class _FaktaMenarikSection extends StatelessWidget {
       'icon': Icons.water_drop_rounded,
       'judul': 'Air Sejernih Kaca',
       'deskripsi': 'Dasar laut terlihat jelas dari permukaan, bahkan tanpa alat bantu selam.',
-      'accentColor': Color(0xFF006D6D), // teal
+      'accentColor': Color(0xFF006D6D), 
     },
     {
       'icon': Icons.beach_access_rounded,
       'judul': 'Pasir Putih Halus',
       'deskripsi': 'Tekstur pasir selembut tepung, nyaman untuk berjalan tanpa alas kaki.',
-      'accentColor': Color(0xFF4FC3F7), // biru muda
+      'accentColor': Color(0xFF006D6D), 
     },
     {
       'icon': Icons.auto_awesome_rounded,
       'judul': 'Hidden Gem',
       'deskripsi': 'Belum banyak wisatawan yang tahu, suasana masih sepi dan alami.',
-      'accentColor': Color(0xFFFFB347), // oranye
+      'accentColor': Color(0xFF006D6D), 
     },
     {
       'icon': Icons.eco_rounded,
       'judul': 'Ekosistem Sehat',
       'deskripsi': 'Terumbu karang masih terjaga baik, menjadi rumah bagi ratusan spesies ikan.',
-      'accentColor': Color(0xFF66BB6A), // hijau
+      'accentColor': Color(0xFF006D6D), 
     },
     {
       'icon': Icons.wb_sunny_rounded,
       'judul': 'Sunset Indah',
       'deskripsi': 'Pemandangan senja yang memukau dengan langit keemasan di ufuk barat.',
-      'accentColor': Color(0xFFEF5350), // merah-oranye
+      'accentColor': Color(0xFF006D6D), 
     },
   ];
 
