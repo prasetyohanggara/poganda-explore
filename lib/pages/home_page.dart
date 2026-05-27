@@ -190,8 +190,40 @@ class _MenuCard extends StatelessWidget {
   final _MenuData data;
   const _MenuCard({required this.data});
 
+  String? _getBackgroundImage() {
+    switch (data.label) {
+      case 'Jelajahi':
+        return 'assets/images/pantai_poganda.jpg';
+      case 'Kuis':
+        return 'assets/images/pantai_poganda_2.jpg';
+      case 'Galeri':
+        return 'assets/images/pantai_poganda_3.jpg';
+      case 'Peta':
+        return 'assets/images/terumbu_karang.jpg';
+      default:
+        return null;
+    }
+  }
+
+  String _getSubtitle() {
+    switch (data.label) {
+      case 'Jelajahi':
+        return 'Temukan spot wisata';
+      case 'Kuis':
+        return 'Uji pengetahuanmu';
+      case 'Galeri':
+        return 'Lihat koleksi foto';
+      case 'Peta':
+        return 'Lihat lokasi wisata';
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bgImage = _getBackgroundImage();
+
     return InkWell(
       onTap: () {
         Widget targetPage;
@@ -218,56 +250,128 @@ class _MenuCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          // ✅ Border gradient teal → biru muda
-          border: Border.all(color: Colors.transparent, width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 6,
-              offset: const Offset(0, 3),
+              color: Colors.black.withValues(alpha: 0.07),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
           ],
+          // Border gradient teal tetap dipertahankan
+          border: Border.all(
+            color: const Color(0xFF006D6D).withValues(alpha: 0.15),
+            width: 1.5,
+          ),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFF006D6D), Color(0xFF4FC3F7)],
-            ),
-          ),
-          padding: const EdgeInsets.all(1.5), // ✅ ketebalan border gradient
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14.5),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: data.bgColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(data.icon, color: data.color, size: 26),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Strip foto atas (55% tinggi card)
+            Expanded(
+              flex: 55,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(14),
+                  topRight: Radius.circular(14),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  data.label,
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF212121),
-                  ),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    if (bgImage != null)
+                      Image.asset(
+                        bgImage,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => Container(
+                          color: const Color(0xFFE0F4F4),
+                        ),
+                      )
+                    else
+                      Container(color: const Color(0xFFE0F4F4)),
+
+                    // Overlay gradient tipis di bagian bawah foto
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: 30,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withValues(alpha: 0.15),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+
+            // Bagian bawah: icon + teks (45% tinggi card)
+            Expanded(
+              flex: 45,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Icon kecil dengan accent teal
+                    Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF006D6D).withValues(alpha: 0.10),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(data.icon, color: const Color(0xFF006D6D), size: 18),
+                    ),
+                    const SizedBox(width: 8),
+
+                    // Label + subtitle
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data.label,
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF212121),
+                            ),
+                          ),
+                          Text(
+                            _getSubtitle(),
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey[500],
+                              height: 1.3,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Arrow kecil sebagai hint clickable
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 12,
+                      color: Colors.grey[400],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -280,95 +384,182 @@ class _FaktaMenarikSection extends StatelessWidget {
   const _FaktaMenarikSection();
 
   final List<Map<String, dynamic>> _fakta = const [
-    {'icon': Icons.water_drop_rounded, 'judul': 'Air Sejernih Kaca', 'deskripsi': 'Dasar laut terlihat jelas dari permukaan'},
-    {'icon': Icons.beach_access_rounded, 'judul': 'Pasir Putih Halus', 'deskripsi': 'Tekstur pasir selembut tepung'},
-    {'icon': Icons.auto_awesome_rounded, 'judul': 'Hidden Gem', 'deskripsi': 'Belum banyak wisatawan yang tahu'},
-    {'icon': Icons.eco_rounded, 'judul': 'Ekosistem Sehat', 'deskripsi': 'Terumbu karang masih terjaga baik'},
-    {'icon': Icons.wb_sunny_rounded, 'judul': 'Sunset Indah', 'deskripsi': 'Pemandangan senja yang memukau'},
+    {
+      'icon': Icons.water_drop_rounded,
+      'judul': 'Air Sejernih Kaca',
+      'deskripsi': 'Dasar laut terlihat jelas dari permukaan, bahkan tanpa alat bantu selam.',
+      'accentColor': Color(0xFF006D6D), // teal
+    },
+    {
+      'icon': Icons.beach_access_rounded,
+      'judul': 'Pasir Putih Halus',
+      'deskripsi': 'Tekstur pasir selembut tepung, nyaman untuk berjalan tanpa alas kaki.',
+      'accentColor': Color(0xFF4FC3F7), // biru muda
+    },
+    {
+      'icon': Icons.auto_awesome_rounded,
+      'judul': 'Hidden Gem',
+      'deskripsi': 'Belum banyak wisatawan yang tahu, suasana masih sepi dan alami.',
+      'accentColor': Color(0xFFFFB347), // oranye
+    },
+    {
+      'icon': Icons.eco_rounded,
+      'judul': 'Ekosistem Sehat',
+      'deskripsi': 'Terumbu karang masih terjaga baik, menjadi rumah bagi ratusan spesies ikan.',
+      'accentColor': Color(0xFF66BB6A), // hijau
+    },
+    {
+      'icon': Icons.wb_sunny_rounded,
+      'judul': 'Sunset Indah',
+      'deskripsi': 'Pemandangan senja yang memukau dengan langit keemasan di ufuk barat.',
+      'accentColor': Color(0xFFEF5350), // merah-oranye
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
-      color: AppTheme.background, 
+      color: AppTheme.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
-            child: Text(
-              'Fakta Menarik',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 16, 
-                fontWeight: FontWeight.w700,
-                color: AppTheme.textDark,
-              ),
+          // Section title dengan left accent border
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+            child: Row(
+              children: [
+                Container(
+                  width: 4,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    color: AppTheme.primary,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                const Text(
+                  'Fakta Menarik',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppTheme.textDark,
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(
-            
-            height: 140, 
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: _fakta.length,
-              itemBuilder: (_, i) {
-                final f = _fakta[i];
-                return Container(
-                  width: 150, 
-                  margin: const EdgeInsets.only(right: 12, bottom: 12),
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha:0.04),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                    border: Border.all(color: Colors.grey.withValues(alpha:0.1)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(f['icon'] as IconData, color: AppTheme.primary, size: 22),
-                      const SizedBox(height: 8),
-                      Text(
-                        f['judul'] as String,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppTheme.textDark,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 4),
-                      
-                      Expanded(
-                        child: Text(
-                          f['deskripsi'] as String,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 10,
-                            color: AppTheme.textGrey,
-                            height: 1.3,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+
+          // Vertical list
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            itemCount: _fakta.length,
+            itemBuilder: (_, i) {
+              final f = _fakta[i];
+              final accent = f['accentColor'] as Color;
+
+              return Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    // Left accent bar
+                    Container(
+                      width: 5,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: accent,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          bottomLeft: Radius.circular(16),
                         ),
                       ),
-                    ],
-                  ),
-                );
-              },
-            ),
+                    ),
+
+                    // Icon dengan background accent tipis
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      child: Container(
+                        width: 46,
+                        height: 46,
+                        decoration: BoxDecoration(
+                          color: accent.withValues(alpha: 0.12),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(f['icon'] as IconData, color: accent, size: 24),
+                      ),
+                    ),
+
+                    // Teks
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 4),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Badge nomor + judul
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: accent.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Text(
+                                    'Fakta #${i + 1}',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 9.5,
+                                      fontWeight: FontWeight.w600,
+                                      color: accent,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              f['judul'] as String,
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: AppTheme.textDark,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              f['deskripsi'] as String,
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 11,
+                                color: AppTheme.textGrey,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(width: 12),
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

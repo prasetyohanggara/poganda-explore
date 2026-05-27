@@ -25,9 +25,11 @@ flutter:
     - assets/images/pantai_poganda.jpg
     - assets/images/pantai_poganda_2.jpg
     - assets/images/pantai_poganda_3.jpg
+    - assets/images/pantai_poganda_masuk.jpg
     - assets/images/terumbu_karang.jpg
     - assets/images/snorkeling.jpg
     - assets/images/ikan_bakar.jpg
+    
     
 
   fonts:
