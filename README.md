@@ -21,7 +21,7 @@ lib/
     ├── quiz_page.dart          # Kuis interaktif + progress bar + feedback warna
     ├── quiz_result_page.dart   # Hasil kuis + skor + predikat + animasi
     ├── gallery_page.dart       # Galeri foto + filter 
-    └── map_page.dart           # Peta Google Maps + marker lokasi + navigasi eksternal
+    └── map_page.dart           # Peta Google Maps + navigasi eksternal
 ```
 
 ---
