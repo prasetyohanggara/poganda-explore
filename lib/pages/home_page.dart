@@ -195,7 +195,7 @@ class _MenuCard extends StatelessWidget {
       case 'Jelajahi':
         return 'assets/images/pantai_poganda_masuk.jpg';
       case 'Kuis':
-        return 'assets/images/pantai_poganda_2.jpg';
+        return 'assets/images/pantai_poganda_kuis.jpg';
       case 'Galeri':
         return 'assets/images/pantai_poganda_galeri.jpg';
       case 'Peta':
