@@ -469,14 +469,14 @@ class _FaktaMenarikSection extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
             itemCount: _fakta.length,
             itemBuilder: (_, i) {
               final f = _fakta[i];
               final accent = f['accentColor'] as Color;
 
               return Container(
-                margin: const EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -524,28 +524,7 @@ class _FaktaMenarikSection extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Badge nomor + judul
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                                  decoration: BoxDecoration(
-                                    color: accent.withValues(alpha: 0.15),
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  child: Text(
-                                    'Fakta #${i + 1}',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 9.5,
-                                      fontWeight: FontWeight.w600,
-                                      color: accent,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 5),
+                            
                             Text(
                               f['judul'] as String,
                               style: const TextStyle(
