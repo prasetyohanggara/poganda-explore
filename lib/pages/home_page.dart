@@ -193,7 +193,7 @@ class _MenuCard extends StatelessWidget {
   String? _getBackgroundImage() {
     switch (data.label) {
       case 'Jelajahi':
-        return 'assets/images/pantai_poganda_masuk.png';
+        return 'assets/images/pantai_poganda_masuk.jpg';
       case 'Kuis':
         return 'assets/images/pantai_poganda_2.jpg';
       case 'Galeri':
